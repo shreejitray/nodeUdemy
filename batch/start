@@ -1,0 +1,2 @@
+node ../test.js
+echo 'Test 1 completed'
