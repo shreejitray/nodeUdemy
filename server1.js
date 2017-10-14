@@ -6,7 +6,7 @@ var router = express.Router();
 var app = express();
 
 router.get('/', (req, res, next) => {
-    res.send({hi:'there Shreejit'});
+    res.send({hi:'there Shreejit ray'});
 });
 
 app.use('/', router);
