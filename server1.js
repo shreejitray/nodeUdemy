@@ -1,10 +1,13 @@
 /**
  * Created by schaud3 on 10/12/17.
  */
-var express = require('express');
+const express = require('express');
+const passport = require('passport');
+const googleStrategy = require('passport-google-oauth20').Strategy;
 var router = express.Router();
 var app = express();
 
+passport.use(new googleStrategy())
 router.get('/', (req, res, next) => {
     res.send({hi:'there Shreejit ray chaudhury'});
 });
