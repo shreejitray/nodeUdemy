@@ -12,9 +12,20 @@ const routes = [uirouter,home,bootstrap,login];
 
 console.log("point1");
 var app = angular.module('app',routes)
-    .config(($urlRouterProvider,$locationProvider) => {
+    .factory('httpRequestInterceptor',()=>{
+        console.log('angular interceptor function');
+        return {
+            request: function (config) {
+                config.headers['validity'] = true;
+                console.log('angular interceptor');
+                return config
+            }
+        }
+    })
+    .config(($urlRouterProvider,$locationProvider,$httpProvider) => {
         $locationProvider.html5Mode(true);
-        $urlRouterProvider.otherwise('/home');
+        $urlRouterProvider.otherwise('/component/home');
+        $httpProvider.interceptors.push('httpRequestInterceptor');
     })
     .run(($state)=>{
         console.log('inside run function');

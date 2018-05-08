@@ -19,9 +19,17 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 
 hbs.registerHelper('toJSON', object => (new hbs.SafeString(object)));
 
+app.use((req,res,next)=>{
+    // if(!req.headers['validity']){
+    //     req.headers['validity']=true;
+    //     res.redirect('/component/home');
+    // }
+    console.log("intercepting"+req.originalUrl);
+    next();
+});
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(staticPath));
+//app.use(express.static(staticPath));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 //app.set('app',path.join(__dirname,'piblic,main.js'));
 app.set('views', path.join(__dirname, 'views'));
@@ -29,9 +37,9 @@ app.set('view engine', 'hbs');
 const compiler = webpack(webpackConfig);
 //webpackDevMiddleware(compiler,{});
 app.use(webpackDevMiddleware(compiler,{}));
-//app.use(webpackHotMiddleware(compiler));
+app.use(webpackHotMiddleware(compiler));
 app.use("/trail1", trail);
-app.use("/",index);
+app.use("/component/*",index);
 
 app.use("*",(req,res) => {
     console.log("no listener found for ",req.baseUrl);

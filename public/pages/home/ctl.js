@@ -9,7 +9,6 @@ export default class HomeController {
         this.state = $state;
         this.resource = $resource;
         this.name = 'home controller'
-
         console.log('home controller initiated');
     }
 }

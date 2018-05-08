@@ -6,7 +6,7 @@ import template from './index.html';
 function routes($stateProvider) {
     $stateProvider
         .state('home', {
-            url: '/home',
+            url: '/component/home',
             templateUrl: template,
             controller: 'homeController',
             controllerAs: 'home'
